@@ -1,16 +1,13 @@
 package frc.robot.commands;
 
-import java.util.List;
-
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.utils.Dashboard;
 
 public class AutonomousLine extends SequentialCommandGroup {
   // Declara SmartDashBoard
-  private final Dashboard log = new Dashboard();
+  //private final Dashboard dash = new Dashboard();
   
   /** Creates a new Autonomous001. */
   public AutonomousLine(DriveSubsystem driveSubsystem, ArmSubsystem armsubsystem) {

@@ -4,13 +4,13 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.AutonomousLine;
 import frc.robot.commands.AutonomousLeft;
 import frc.robot.commands.AutonomousRight;
 import frc.robot.subsystems.DriveSubsystem;
-//import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
@@ -33,16 +33,19 @@ public class RobotContainer {
   // Os subsistemas do robô
   private final ArmSubsystem m_armsubsystem = new ArmSubsystem();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  //private final ElevatorSubsystem m_elevatorsystem = new ElevatorSubsystem();
   private final IntakeSubsystem m_intakesystem = new IntakeSubsystem();
-  private final VisionSubsystem m_vision = new VisionSubsystem(m_robotDrive);
 
+  // MAC - Variaveis do autonomo
   private final AutonomousLine autonomousLine = new AutonomousLine(m_robotDrive, m_armsubsystem);
   private final AutonomousLeft autonomousLeft = new AutonomousLeft(m_robotDrive, m_armsubsystem, m_intakesystem);
   private final AutonomousRight autonomousRight = new AutonomousRight(m_robotDrive, m_armsubsystem, m_intakesystem);
 
+
   // MAC - caixinha seletora na drive station
-  SendableChooser<Command> opcaoautonomo = new SendableChooser<>();
+  private static final String kAutoLeft = "Autonomo Left";
+  private static final String kAutoRight = "Autonomo Right";
+  private static final String kAutoLine = "Autonomo Line";
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
   SendableChooser<Double> seletorLimeLight = new SendableChooser<>();  
 
   // O Joystick do robô
@@ -54,6 +57,7 @@ public class RobotContainer {
    * O contêiner para o robô. Contém subsistemas, dispositivos de entrada/saida e comandos.
    */
   public RobotContainer() {
+      
     // Configura os botão padrão
     configureButtonBindings();
 
@@ -63,12 +67,11 @@ public class RobotContainer {
     autonomousRight.addRequirements(m_robotDrive);
 
     // MAC - Adiciona as opções na select box da FRC Drive station
-    opcaoautonomo.addOption("Autonomo Left", autonomousLeft);
-    opcaoautonomo.addOption("Autonomo Right", autonomousRight);
-    opcaoautonomo.addOption("Autonomo Line", autonomousLine);
+    m_chooser.setDefaultOption(kAutoLeft, autonomousLeft);
+    m_chooser.addOption(kAutoRight, autonomousRight);
+    m_chooser.addOption(kAutoLine, autonomousLine);
 
-    // MAC - autonomo padrao setado
-    opcaoautonomo.setDefaultOption("Autonomo", autonomousLeft);
+    SmartDashboard.putData("AUTONOMO",m_chooser);
 
     m_robotDrive.zeroHeading();
     //m_robotDrive.changeRateLimit();
@@ -172,11 +175,11 @@ public class RobotContainer {
     //Rotaciona o Robô 90º 
     JoystickButton rotationRobotL = new JoystickButton(m_driverController, 5);
     rotationRobotL.onTrue(new InstantCommand(
-            () -> m_robotDrive.rotationRobot(m_robotDrive,-90)));                  
+            () -> m_robotDrive.rotationRobot(m_robotDrive,-45)));                  
 
     JoystickButton rotationRobotR = new JoystickButton(m_driverController, 6);
     rotationRobotR.onTrue(new InstantCommand(
-            () -> m_robotDrive.rotationRobot(m_robotDrive,90)));                  
+            () -> m_robotDrive.rotationRobot(m_robotDrive,45)));                  
 
     JoystickButton rotationRobot180 = new JoystickButton(m_driverController, 10);
     rotationRobot180.onTrue(new InstantCommand(
@@ -259,14 +262,8 @@ public class RobotContainer {
 
   }
 
-
-
-  /**
-   * Use isso para passar o comando autônomo para a classe principal {@link Robot}.
-   *
-   * @return o comando para executar em autônomo
-   */
   public Command getAutonomousCommand() {
-    return opcaoautonomo.getSelected();
-  }
+    return m_chooser.getSelected();
+  }    
+
 }

@@ -3,9 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.utils.Dashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A VM está configurada para executar automaticamente esta classe e para chamar as funções correspondentes a
@@ -15,18 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot { 
 
-  private static final String kAutoLeft = "Autonomo Left";
-  private static final String kAutoRight = "Autonomo Right";
-  private static final String kAutoLine = "Autonomo Line";
-
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
   // Declara SmartDashBoard
-  private final Dashboard log = new Dashboard();
-
-  private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+  private Command m_autonomousCommand;
 
   /**
    * Esta função é executada quando o robô é iniciado e deve ser usado para qualquer
@@ -34,15 +22,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-
-    m_chooser.setDefaultOption(kAutoLeft, kAutoLeft);
-    m_chooser.addOption(kAutoRight, kAutoRight);
-    m_chooser.addOption(kAutoLine, kAutoLine);
-
-    //SmartDashboard.putStringArray("Auto Choice",m_chooser);
-
-    log.PV("Auto choices", m_chooser);
-
     m_robotContainer = new RobotContainer();
   }
 
@@ -72,11 +51,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    //m_autoSelected = m_chooser.getSelected();
-
-    //m_autoSelected = SmartDashboard.getString("Auto Selector", kAutoLeft);
-
-    //log.PV("Auto Selected: ",m_autoSelected);
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -146,5 +120,5 @@ public class Robot extends TimedRobot {
 
   }
 
-
+  
 }

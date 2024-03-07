@@ -85,7 +85,7 @@ public class AutonomousLeft extends SequentialCommandGroup {
     drivesubsystem.setPidDesativo();
     drivesubsystem.zeroHeading();
     drivesubsystem.moveXY(25,0);
-    drivesubsystem.moveXY(0,45);    
+    drivesubsystem.moveXY(0,35);    
     armsubsystem.angularArm(30);
 
     startTime = System.currentTimeMillis();
