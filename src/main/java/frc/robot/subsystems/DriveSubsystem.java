@@ -350,13 +350,13 @@ public class DriveSubsystem extends SubsystemBase {
     double logica = -1;
     double kp = 0.02;  // Força
     double velocidade = 0.4; //Velocidade
-    int qRotation = 20; 
+    int qRotation = 10; 
 
     double startTime = System.currentTimeMillis();
 
     int cont = 0;
 
-    while ((cont < qRotation) && ((System.currentTimeMillis() - startTime) < 4000)) {
+    while ((cont < qRotation) && ((System.currentTimeMillis() - startTime) < 3000)) {
       double erro = getHeading() - graus;
       double proporcional = kp * erro * logica; 
 
