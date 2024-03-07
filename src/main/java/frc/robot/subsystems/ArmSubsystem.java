@@ -39,7 +39,7 @@ public class ArmSubsystem extends SubsystemBase {
 
     private boolean flagElevator;
     private double elevatorSetPoint;
-    private boolean flagDownArm = true;
+//    private boolean flagDownArm = true;
 
     private DriveSubsystem m_robot;
 
