@@ -7,18 +7,25 @@ Imagina só, um punhado de linhas de código Java ganhando vida no coração de 
 
 *Se você estiver interessado em saber o que estamos aprontando, será bem vindo no [nosso Instagram](https://www.instagram.com/steelbullsfrc/).*
 
+# Equipe de Desenvolvimento
+
+- Marlon Andrei de Carvalho - Analista Desenvolvedor
+- Willian Mulia Miranda - Analista Desenvolvedor
+- Lucas Hideki Miyazaki
+
+# Equipe de Eletrônica
+
+- Estevão Ariel Arantes da Silva - Eletro Eletrônica
+
+# Equipe de Mecânica de Usinagem
+
+- Guilherme Marcos Pastore - Mecânica de Usinagem
+
 # Tecnologia
 
 - MAX Swerve
 - Spark 
 - Java 11 
-
-# Equipe
-
-- Marlon Andrei de Carvalho - Analista Desenvolvedor
-- Willian Mulia Miranda - Analista Desenvolvedor
-- Estevão Ariel Arantes da Silva - Eletro Eletrônica
-- Guilherme Marcos Pastore - Mecânica de Usinagem
 
 # Licença
 
