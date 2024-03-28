@@ -91,26 +91,30 @@ public class RobotContainer {
         
     );
 
-    //Configura modo turbo
-    /* 
-    m_robotDrive.setDefaultCommand(
-      new RunCommand(
-        () -> m_robotDrive.axixVelocity(
-                MathUtil.applyDeadband(m_driverController.getRawAxis(2), OIConstants.kDriveDeadband)
-              ),
-              m_robotDrive 
-      )
+    //Configura axis da intake
+    m_intakesystem.setDefaultCommand(
+
+        new RunCommand(
+            () -> m_intakesystem.axisTake(
+                    m_controlController.getRawAxis(2),
+                    m_controlController.getRawAxis(3)
+             ),
+             m_intakesystem
+        )
+        
     );
-    */
+
 
     //Configura elevador
     m_armsubsystem.setDefaultCommand(
+
         new RunCommand(
             () -> m_armsubsystem.elevatorMotor(
                     m_controlController.getRawAxis(5)
              ),
              m_armsubsystem
         )
+
     );
 
   }
@@ -218,20 +222,20 @@ public class RobotContainer {
 
     JoystickButton armUp = new JoystickButton(m_controlController, 4);
     armUp.onTrue(new InstantCommand(
-            () -> m_armsubsystem.angularArm(25))   //160
+            () -> m_armsubsystem.angularArm(25)) 
     );
 
     JoystickButton armInit = new JoystickButton(m_controlController, 2);
     armInit.onTrue(new InstantCommand(
-            () -> m_armsubsystem.angularArm(0))   
+            () -> m_armsubsystem.angularArm(10))   
     );
 
 
     //
-    JoystickButton inTake = new JoystickButton(m_controlController, 5);
+    JoystickButton inTakeMiddle = new JoystickButton(m_controlController, 5);
     // RunCommand roda sempre
-    inTake.onTrue(new InstantCommand(
-            () -> m_intakesystem.inTake())
+    inTakeMiddle.onTrue(new InstantCommand(
+            () -> m_intakesystem.inTakeMiddle())
     );
 
     JoystickButton zeroTake1 = new JoystickButton(m_controlController,5);
@@ -240,10 +244,9 @@ public class RobotContainer {
             () -> m_intakesystem.zeroTake())
     );
 
-    JoystickButton outTake = new JoystickButton(m_controlController, 6);
-    // RunCommand roda sempre
-    outTake.onTrue(new InstantCommand(
-            () -> m_intakesystem.outTake())
+    JoystickButton outTakeShooter = new JoystickButton(m_controlController, 6);
+    outTakeShooter.onTrue(new InstantCommand(
+            () -> m_intakesystem.outTakeShooter())
     );
 
     JoystickButton zeroTake2 = new JoystickButton(m_controlController,6);

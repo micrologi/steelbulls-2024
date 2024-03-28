@@ -232,10 +232,12 @@ public final class Constants {//é uma classe (Constants) pública final (que
   }
 
   public static final class IntakeConstants {
-    public static final int intakeCAN = 30;  //30
+    public static final int intakeCANidDOWN = 30;  //30
+    public static final int intakeCANidUP = 31;
     public static final int digitalUpId = 0; 
     public static final int digitalDownId = 1; 
-    public static final double inVelocity = 1; // Velocidade de giro do motor - 0.0 a 1.0
+    public static final double downVelocity = 1; // Velocidade de giro do motor - 0.0 a 1.0
+    public static final double upVelocity = 10; // Velocidade de giro do motor - 0.0 a 1.0
   }
 
   public static final class ModuleConstants {
