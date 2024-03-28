@@ -1,3 +1,8 @@
+/**Classe ArmSubsystem - Responsável pelo controle do braço do Rôbo, com fantásticos posicionamentos angulares
+ *                       As equipes da FRC ficaram me perguntando como fazia pra angular kkkkkk
+ * @author Marlon Andrei (A Lenda)
+ * @version 1.00 (Só foi precisa 1 versão para acertar) * 
+ */
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;

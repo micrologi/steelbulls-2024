@@ -238,6 +238,7 @@ public final class Constants {//é uma classe (Constants) pública final (que
     public static final int digitalDownId = 1; 
     public static final double downVelocity = 1; // Velocidade de giro do motor - 0.0 a 1.0
     public static final double upVelocity = 10; // Velocidade de giro do motor - 0.0 a 1.0
+    public static final double currentMaxBattery = 12.6;
   }
 
   public static final class ModuleConstants {

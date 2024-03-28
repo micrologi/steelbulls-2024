@@ -1,3 +1,7 @@
+/**Classe DriveSubsystem - Essa classe que faz o Rôbo andar 
+ * @author Não sei ao certo, admito que peguei da Net mas tive que arruma-lá! - Marlon Andrei (O Mito)
+ * @version 2.00 (Como eu mechi, considero a minha versão a 2) * 
+ */
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;

@@ -1,10 +1,17 @@
+/**Classe IntakeSubsystem - Mais uma implementação genial da Intake
+ * @author Marlon Andrei (The Master of Java)
+ * @version 1.00 
+ */
 package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import frc.robot.Constants;
 import frc.robot.Constants.IntakeConstants;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.utils.Dashboard;
+import edu.wpi.first.wpilibj.RobotController;
 
 public class IntakeSubsystem extends SubsystemBase {
     private final Dashboard dash = new Dashboard();
@@ -13,7 +20,6 @@ public class IntakeSubsystem extends SubsystemBase {
     private final CANSparkMax m_intakeUp;
     
     private final Ultrasonic sensorIntake = new Ultrasonic(4, 5);
-
     private boolean flagIntake = false;
 
     public IntakeSubsystem() {    
@@ -21,8 +27,8 @@ public class IntakeSubsystem extends SubsystemBase {
       m_intakeDown = new CANSparkMax(IntakeConstants.intakeCANidDOWN, MotorType.kBrushed);          
       m_intakeUp = new CANSparkMax(IntakeConstants.intakeCANidUP, MotorType.kBrushless);
 
-      m_intakeDown.setSmartCurrentLimit(80);
-      m_intakeUp.setSmartCurrentLimit(80);
+      m_intakeDown.setSmartCurrentLimit(stabilizeCurrent(80));
+      m_intakeUp.setSmartCurrentLimit(stabilizeCurrent(80));
 
       sensorIntake.setAutomaticMode(true);    
     } 
@@ -68,12 +74,20 @@ public class IntakeSubsystem extends SubsystemBase {
       }
 
     }
+
+    public int stabilizeCurrent(int current) {
+      double batVoltage = RobotController.getBatteryVoltage(); 
+      return (int)(current + (current - (current / Constants.IntakeConstants.currentMaxBattery) * batVoltage));
+    }
     
     public void outTakeShooter() {      
         double startTime;
+                
+        int currentMin = stabilizeCurrent(30);
+        int currentMax = stabilizeCurrent(80);
 
-        m_intakeDown.setSmartCurrentLimit(30);
-        m_intakeUp.setSmartCurrentLimit(30);
+        m_intakeDown.setSmartCurrentLimit(currentMin);
+        m_intakeUp.setSmartCurrentLimit(currentMin);
 
         m_intakeDown.set(IntakeConstants.downVelocity * 1);  
         m_intakeUp.set(IntakeConstants.downVelocity * 1);
@@ -85,8 +99,8 @@ public class IntakeSubsystem extends SubsystemBase {
         m_intakeDown.set(0);  
         m_intakeUp.set(0);
 
-        m_intakeDown.setSmartCurrentLimit(80);
-        m_intakeUp.setSmartCurrentLimit(80);
+        m_intakeDown.setSmartCurrentLimit(currentMax);
+        m_intakeUp.setSmartCurrentLimit(currentMax);
         m_intakeDown.set(IntakeConstants.downVelocity * -1);
 
         startTime = System.currentTimeMillis();
