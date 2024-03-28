@@ -1,14 +1,7 @@
 package frc.robot.subsystems;
-
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkPIDController;
-
 import com.revrobotics.CANSparkLowLevel.MotorType;
-
-import frc.robot.Constants.ArmConstants;
 import frc.robot.Constants.IntakeConstants;
-import frc.robot.Constants.ModuleConstants;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.utils.Dashboard;
@@ -19,10 +12,6 @@ public class IntakeSubsystem extends SubsystemBase {
     private final CANSparkMax m_intakeDown;
     private final CANSparkMax m_intakeUp;
     
-    //private final RelativeEncoder m_encoderUp;
-    //private final SparkPIDController m_pidUp;
-    //private double kP, kI, kD, kFF, kMaxOutput, kMinOutput, kAngle;
-
     private final Ultrasonic sensorIntake = new Ultrasonic(4, 5);
 
     private boolean flagIntake = false;
@@ -34,38 +23,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
       m_intakeDown.setSmartCurrentLimit(80);
       m_intakeUp.setSmartCurrentLimit(80);
-
-      /* 
-
-      m_intakeUp.restoreFactoryDefaults();
-    
-      // PID Coeficientes
-      kP = 0.1; //0.1
-      kI = 0;
-      kD = 0;
-      kFF = 0;
-      
-      kMinOutput = -1;      
-      kMaxOutput = 1;
-      
-      m_encoderUp = m_intakeUp.getEncoder();
-      m_pidUp = m_intakeUp.getPIDController();
-      m_pidUp.setFeedbackDevice(m_encoderUp);
-
-      m_encoderUp.setPositionConversionFactor(1);
-      m_encoderUp.setPosition(0);
-  
-      m_pidUp.setP(kP);
-      m_pidUp.setI(kI);
-      m_pidUp.setD(kD);
-      m_pidUp.setFF(kFF);
-      m_pidUp.setOutputRange(kMinOutput,kMaxOutput);
-
-      m_intakeUp.setIdleMode(ModuleConstants.kDrivingMotorIdleMode);
-      m_intakeUp.setSmartCurrentLimit(ArmConstants.armMotorCurrentLimit);
-
-      m_intakeUp.burnFlash();
-      */   
 
       sensorIntake.setAutomaticMode(true);    
     } 
