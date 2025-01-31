@@ -9,9 +9,9 @@ Imagina só, um punhado de linhas de código Java ganhando vida no coração de 
 
 # Equipe de Desenvolvimento
 
-- Marlon Andrei de Carvalho - Analista Desenvolvedor
-- Willian Mulia Miranda - Analista Desenvolvedor
-- Lucas Hideki Miyazaki
+- Marlon Andrei de Carvalho - Analista Desenvolvedor (Robô)
+- Willian Mulia Miranda - Analista Desenvolvedor (PID, IA)
+- Lucas Hideki Miyazaki - Analista Junior (Robô)
 
 # Equipe de Eletrônica
 
